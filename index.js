@@ -46,6 +46,7 @@ app.post("/sendEmail", async (req, res) => {
     });
 
     let htmlData = `
+    <h3>Here is the details selected</h3> 
   <table>
     <tr>
       <th>Id</th>
@@ -77,7 +78,7 @@ app.post("/sendEmail", async (req, res) => {
     var mailOptions = {
         from: 'Vandit Shah <shahvandit005@gmail.com>',
         to: 'shahvandit04@gmail.com',
-        subject: 'Check',
+        subject: 'Details of Users',
         // html: ejs.renderFile(__dirname + '/index.ejs', { data: data })
         html: htmlData
         //     ejs: ' '
