@@ -26,9 +26,6 @@ app.get("/", async (req, res) => {
 
 app.post("/sendEmail", async (req, res) => {
     const data = req.body;
-    // res.render(index,{data:data});
-    // console.log(data);
-    // let testAccount = await nodemailer.createTestAccount();
     let transporter = await nodemailer.createTransport({
         service: 'gmail',
         host: "smtp.gmail.com",
@@ -93,6 +90,12 @@ app.post("/sendEmail", async (req, res) => {
         }
     })
 });
+
+app.post("/deleteData",async (req, res) => {
+    const id = req.body._id;
+    const response = await userDetail.findByIdAndDelete(id); 
+    // console.log(response);
+})
 
 app.listen(process.env.PORT || 5000, () => {
     console.log("Server is running");
