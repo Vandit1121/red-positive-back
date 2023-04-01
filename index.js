@@ -12,10 +12,16 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.post("/sendDetails", async (req, res) => {
-    const details = new userDetail(req.body);
-    await details.save().then(() => {
-        console.log("Success");
-    });
+    if(req.body._id==='null'){
+        // console.log(req.body);  
+        const details = new userDetail({name:req.body.name,phoneNumber:req.body.phoneNumber,email:req.body.email,hobbies:req.body.hobbies});
+        await details.save().then(() => {
+            console.log("Success");
+        });
+    }
+    else{
+        await userDetail.findByIdAndUpdate(req.body._id,{name:req.body.name,phoneNumber:req.body.phoneNumber,email:req.body.email,hobbies:req.body.hobbies});
+    }
 });
 
 app.get("/", async (req, res) => {
