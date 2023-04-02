@@ -14,9 +14,11 @@ app.use(cors());
 app.post("/sendDetails", async (req, res) => {
     if(req.body._id==='null'){
         // console.log(req.body);  
-        const details = new userDetail({name:req.body.name,phoneNumber:req.body.phoneNumber,email:req.body.email,hobbies:req.body.hobbies});
+        const details = await new userDetail({name:req.body.name,phoneNumber:req.body.phoneNumber,email:req.body.email,hobbies:req.body.hobbies});
         await details.save().then(() => {
             console.log("Success");
+            // res.redirect(req.get('referer'));
+            // location.reload();   
         });
     }
     else{
@@ -96,6 +98,7 @@ app.post("/sendEmail", async (req, res) => {
         }
     })
 });
+
 
 app.post("/deleteData",async (req, res) => {
     const id = req.body._id;
