@@ -82,7 +82,7 @@ app.post("/sendEmail", async (req, res) => {
 
     var mailOptions = {
         from: 'Vandit Shah <shahvandit005@gmail.com>',
-        to: 'shahvandit04@gmail.com',
+        to: 'info@redpositive.in',
         subject: 'Details of Users',
         // html: ejs.renderFile(__dirname + '/index.ejs', { data: data })
         html: htmlData
