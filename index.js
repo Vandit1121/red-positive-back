@@ -82,24 +82,29 @@ app.post("/sendEmail", async (req, res) => {
 
     var mailOptions = {
         from: 'Vandit Shah <shahvandit005@gmail.com>',
-        to: 'info@redpositive.in',
+        to: 'shahvandit04@gmail.com',
         subject: 'Details of Users',
         // html: ejs.renderFile(__dirname + '/index.ejs', { data: data })
         html: htmlData
         //     ejs: ' '
     };
-
+    // 'info@redpositive.in'
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
             console.log(error);
         }
         else {
             console.log("Email Sent");
+            // res.redirect("/refresh");
         }
     })
 });
 
-
+app.get('/refresh', function(req, res) {
+    res.redirect(req.get('referer'));
+  });
+  
+  
 app.post("/deleteData",async (req, res) => {
     const id = req.body._id;
     const response = await userDetail.findByIdAndDelete(id); 
